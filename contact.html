@@ -1,34 +1,92 @@
-<section id="contact">
-    <h2>Contact</h2>
-    <p style="color: var(--text-secondary); margin-bottom: 40px;">
-        Intervention rapide sur Paris et l'ensemble de la région parisienne.
-    </p>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Cap Cordes</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* On reprend exactement le même CSS que l'index pour la cohérence */
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #1a1a1a;
+            --text-secondary: #555555;
+            --accent: #000000;
+            --border: #eeeeee;
+            --sidebar-width: 280px;
+            --font-titles: 'Orbitron', sans-serif;
+            --font-body: 'Xenara', 'Times New Roman', serif;
+        }
 
-    <div style="display: grid; grid-template-columns: 1fr; gap: 40px; margin-top: 20px;">
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: var(--font-body); display: flex; color: var(--text-main); line-height: 1.6; }
+
+        /* Sidebar (identique à l'index) */
+        aside { width: var(--sidebar-width); height: 100vh; position: fixed; left: 0; top: 0; border-right: 1px solid var(--border); padding: 40px 30px; background: #fff; z-index: 500; }
+        .logo-img { max-width: 100%; height: auto; margin-bottom: 40px; }
+        nav ul { list-style: none; }
+        nav ul li { margin-bottom: 12px; }
+        nav ul li a { font-family: var(--font-titles); text-decoration: none; color: var(--text-main); font-size: 0.7rem; text-transform: uppercase; }
+
+        /* Contenu spécifique Contact */
+        main { margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width)); display: flex; justify-content: center; }
+        .content-wrapper { max-width: 850px; width: 100%; padding: 100px 40px; text-align: center; }
         
-        <div style="text-align: center;">
-            <div style="margin-bottom: 30px;">
-                <h3 style="font-family: var(--font-titles); font-size: 0.8rem; text-transform: uppercase; margin-bottom: 10px; color: var(--text-secondary);">Téléphone</h3>
-                <a href="tel:+33783048294" style="text-decoration: none; color: var(--text-main); font-size: 1.4rem; font-weight: bold; font-family: var(--font-titles);">07 83 04 82 94</a>
+        h1 { font-family: var(--font-titles); text-transform: uppercase; font-size: 2.5rem; margin-bottom: 60px; letter-spacing: 2px; }
+        .contact-card { margin-bottom: 40px; }
+        .label { font-family: var(--font-titles); font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 10px; }
+        .info-value { font-size: 1.4rem; font-weight: bold; text-decoration: none; color: var(--text-main); }
+        .address { font-size: 1.1rem; color: var(--text-main); }
+
+        .btn { font-family: var(--font-titles); display: inline-block; padding: 18px 40px; border: 1px solid var(--accent); text-decoration: none; color: #fff; background: var(--accent); font-size: 0.75rem; text-transform: uppercase; border-radius: 50px; margin-top: 30px; }
+
+        @media (max-width: 1024px) {
+            aside { display: none; } /* On simplifie pour la démo, ou tu remets ton burger ici */
+            main { margin-left: 0; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <aside>
+        <img src="logo.png" alt="Cap Cordes" class="logo-img">
+        <nav>
+            <ul>
+                <li><a href="index.html">Forfait inspection toiture</a></li>
+                <li><a href="index.html#expertise">Restauration de pierre</a></li>
+                <li><a href="index.html#intervention">Recherche d'infiltration</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main>
+        <div class="content-wrapper">
+            <h1>Contact</h1>
+
+            <div class="contact-card">
+                <p class="label">Téléphone</p>
+                <a href="tel:+33783048294" class="info-value">07 83 04 82 94</a>
             </div>
 
-            <div style="margin-bottom: 30px;">
-                <h3 style="font-family: var(--font-titles); font-size: 0.8rem; text-transform: uppercase; margin-bottom: 10px; color: var(--text-secondary);">Email</h3>
-                <a href="mailto:contact@capcordes.fr" style="text-decoration: none; color: var(--text-main); font-size: 1.1rem; border-bottom: 1px solid var(--accent); padding-bottom: 5px;">contact@capcordes.fr</a>
+            <div class="contact-card">
+                <p class="label">Email</p>
+                <a href="mailto:contact@capcordes.fr" class="info-value" style="font-size: 1.1rem;">contact@capcordes.fr</a>
             </div>
 
-            <div style="margin-bottom: 40px;">
-                <h3 style="font-family: var(--font-titles); font-size: 0.8rem; text-transform: uppercase; margin-bottom: 10px; color: var(--text-secondary);">Adresse</h3>
-                <p style="line-height: 1.8;">
+            <div class="contact-card">
+                <p class="label">Atelier</p>
+                <p class="address">
                     <strong>Atelier 35</strong><br>
                     67 avenue de Verdun<br>
                     77470 Trilport
                 </p>
             </div>
-        </div>
 
-        <div>
-            <a href="tel:+33783048294" class="btn" style="background: var(--accent); color: #fff;">Appeler maintenant</a>
+            <a href="tel:+33783048294" class="btn">Appeler maintenant</a>
         </div>
-    </div>
-</section>
+    </main>
+
+</body>
+</html>
