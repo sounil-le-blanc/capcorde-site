@@ -3,17 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cap Cordes | Inspection et Travaux</title>
+    <title>Cap Cordes | Inspection et Travaux Acrobatiques</title>
+    
     <link rel="icon" type="image/png" href="favicon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --bg-color: #ffffff;
             --text-main: #1a1a1a;
             --text-secondary: #555555;
             --accent: #000000;
-            --border: #dddddd;
+            --border: #eeeeee;
             --sidebar-width: 280px;
+            /* Polices issues de la charte [cite: 5, 7] */
             --font-titles: 'Orbitron', sans-serif;
             --font-body: 'Xenara', 'Times New Roman', serif;
         }
@@ -29,20 +33,19 @@
             line-height: 1.6;
         }
 
-        /* --- BOUTON BURGER (MOBILE UNIQUEMENT) --- */
+        /* --- MENU BURGER (MOBILE) --- */
         .burger-btn {
             display: none;
             position: fixed;
             top: 20px;
             left: 20px;
-            z-index: 200;
+            z-index: 1000;
             background: #fff;
             border: 1px solid var(--border);
             padding: 10px;
             cursor: pointer;
             border-radius: 5px;
         }
-
         .burger-btn span {
             display: block;
             width: 25px;
@@ -58,17 +61,17 @@
             height: 100vh;
             position: fixed;
             left: 0; top: 0;
-            border-right: 1px solid #eee;
+            border-right: 1px solid var(--border);
             padding: 40px 30px;
             display: flex;
             flex-direction: column;
             background: #fff;
-            z-index: 150;
+            z-index: 500;
             transition: transform 0.3s ease-in-out;
         }
 
         .logo-container { margin-bottom: 40px; }
-        .logo-img { max-width: 100%; height: auto; }
+        .logo-img { max-width: 100%; height: auto; display: block; }
 
         nav ul { list-style: none; }
         nav ul li { margin-bottom: 12px; }
@@ -80,8 +83,9 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
+        nav ul li a:hover { color: #888; }
 
-        /* --- MAIN CONTENT --- */
+        /* --- CONTENU --- */
         main {
             margin-left: var(--sidebar-width);
             width: calc(100% - var(--sidebar-width));
@@ -96,15 +100,24 @@
             text-align: center;
         }
 
-        /* --- SECTIONS --- */
-        section { margin-bottom: 120px; }
-        h1 { font-family: var(--font-titles); text-transform: uppercase; font-size: 2rem; margin-bottom: 15px; }
+        section { margin-bottom: 120px; padding-top: 40px; }
+
+        h1 { font-family: var(--font-titles); text-transform: uppercase; font-size: 2rem; margin-bottom: 15px; letter-spacing: 2px; }
         .subtitle { font-family: var(--font-titles); text-transform: uppercase; font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 60px; }
+        h2 { font-family: var(--font-titles); text-transform: uppercase; font-size: 1.5rem; margin-bottom: 30px; }
+
+        .location-tag { font-family: var(--font-titles); font-size: 0.9rem; text-transform: uppercase; margin-top: 40px; letter-spacing: 2px; }
         .price { font-family: var(--font-titles); font-size: 2.2rem; font-weight: 700; margin: 10px 0 40px 0; }
+
+        /* --- IMAGES & GRILLES --- */
         .hero-img { width: 100%; height: 450px; object-fit: cover; margin-bottom: 60px; }
         .photo-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin: 50px 0; }
         .photo-duo img { width: 100%; height: 380px; object-fit: cover; }
-        
+
+        .grid-intervention { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin: 50px 0; }
+        .card { border: 1px solid var(--border); padding: 35px; text-align: left; border-radius: 4px; }
+        .card h3 { font-family: var(--font-titles); font-size: 0.85rem; margin-bottom: 15px; text-transform: uppercase; }
+
         .btn {
             font-family: var(--font-titles);
             display: inline-block;
@@ -115,37 +128,25 @@
             font-size: 0.75rem;
             text-transform: uppercase;
             border-radius: 50px;
+            transition: 0.3s;
         }
+        .btn:hover { background: var(--accent); color: #fff; }
 
-        /* --- RESPONSIVE MOBILE --- */
+        /* --- RESPONSIVE --- */
         @media (max-width: 1024px) {
             .burger-btn { display: block; }
-            
-            aside {
-                transform: translateX(-100%); /* Caché à gauche */
-                box-shadow: 10px 0 30px rgba(0,0,0,0.1);
-            }
-
-            aside.open {
-                transform: translateX(0); /* Affiche le menu */
-            }
-
-            main {
-                margin-left: 0;
-                width: 100%;
-            }
-
+            aside { transform: translateX(-100%); }
+            aside.open { transform: translateX(0); }
+            main { margin-left: 0; width: 100%; }
             .hero-img { height: 300px; }
-            .photo-duo { grid-template-columns: 1fr; }
+            .photo-duo, .grid-intervention { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
     <div class="burger-btn" onclick="toggleMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span>
     </div>
 
     <aside id="sidebar">
@@ -155,12 +156,12 @@
         <nav>
             <ul>
                 <li><a href="#accueil" onclick="toggleMenu()">Forfait inspection toiture</a></li>
-                <li><a href="#restauration" onclick="toggleMenu()">Restauration de pierre</a></li>
-                <li><a href="#infiltration" onclick="toggleMenu()">Recherche d'infiltration</a></li>
-                <li><a href="#entretien" onclick="toggleMenu()">Entretien</a></li>
-                <li><a href="#courettes" onclick="toggleMenu()">Rénovation de courettes</a></li>
-                <li><a href="#speciaux" onclick="toggleMenu()">Travaux spéciaux</a></li>
-                <li><a href="#a-propos" onclick="toggleMenu()">Qui sommes nous ?</a></li>
+                <li><a href="#expertise" onclick="toggleMenu()">Restauration de pierre</a></li>
+                <li><a href="#intervention" onclick="toggleMenu()">Recherche d'infiltration</a></li>
+                <li><a href="#accueil" onclick="toggleMenu()">Entretien</a></li>
+                <li><a href="#accueil" onclick="toggleMenu()">Rénovation de courettes</a></li>
+                <li><a href="#accueil" onclick="toggleMenu()">Travaux spéciaux</a></li>
+                <li><a href="#expertise" onclick="toggleMenu()">Qui sommes nous ?</a></li>
                 <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
             </ul>
         </nav>
@@ -168,26 +169,71 @@
 
     <main>
         <div class="content-wrapper">
+            
             <section id="accueil">
                 <img src="vue-paris.jpg" alt="Toits de Paris" class="hero-img">
                 <h1>Inspection de toiture et façade</h1>
                 <div class="subtitle">Immeubles Haussmanniens</div>
+                <div class="location-tag">Forfait Paris et Île-de-France</div>
                 <div class="price">600€ HT</div>
-                <a href="#contact" class="btn">Réserver une inspection</a>
+                <a href="mailto:contact@capcordes.fr" class="btn">Réserver une inspection</a>
             </section>
 
-            </div>
+            <section id="expertise">
+                <h2>L'exigence du bâti ancien</h2>
+                <p>La pierre de taille et les toitures à la Mansart demandent un œil expert. Nous identifions les désordres avant qu'ils ne deviennent critiques.</p>
+                <div class="photo-duo">
+                    <img src="chantier1.jpg" alt="Inspection">
+                    <img src="chantier2.jpg" alt="Corde">
+                </div>
+            </section>
+
+            <section id="intervention">
+                <h2>Notre intervention</h2>
+                <div class="grid-intervention">
+                    <div class="card">
+                        <h3>Inspection Façade</h3>
+                        <p>Analyse des fissures et stabilité des ornements.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Contrôle Toiture</h3>
+                        <p>Étanchéité des zingueries et état des ardoises.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Mise en Sécurité</h3>
+                        <p>Purge immédiate des éléments instables.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Rapport Technique</h3>
+                        <p>Dossier photo HD et préconisations.</p>
+                    </div>
+                </div>
+                <div class="price">600€ HT</div>
+                <a href="mailto:contact@capcordes.fr" class="btn">Réserver une inspection</a>
+            </section>
+
+            <section id="photos-finales">
+                <div class="photo-duo">
+                    <img src="vue-toit1.jpg" alt="Vue 1">
+                    <img src="vue-toit2.jpg" alt="Vue 2">
+                </div>
+            </section>
+
+            <section id="contact">
+                <h2>Prêt pour une inspection ?</h2>
+                <p>Intervention rapide sur Paris et l'ensemble de la région parisienne.</p>
+                <a href="mailto:contact@capcordes.fr" class="btn">Nous contacter</a>
+            </section>
+
+        </div>
     </main>
 
     <script>
         function toggleMenu() {
-            const sidebar = document.getElementById('sidebar');
-            // On ne déclenche l'ouverture que si on est sur mobile
             if (window.innerWidth <= 1024) {
-                sidebar.classList.toggle('open');
+                document.getElementById('sidebar').classList.toggle('open');
             }
         }
     </script>
-
 </body>
 </html>
