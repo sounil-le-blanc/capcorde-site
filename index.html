@@ -6,7 +6,6 @@
     <title>Cap Cordes | Inspection et Travaux Acrobatiques</title>
     
     <link rel="icon" type="image/png" href="favicon.png">
-    
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800&display=swap" rel="stylesheet">
     
     <style>
@@ -17,7 +16,6 @@
             --accent: #000000;
             --border: #eeeeee;
             --sidebar-width: 280px;
-            /* Polices issues de la charte [cite: 5, 7] */
             --font-titles: 'Orbitron', sans-serif;
             --font-body: 'Xenara', 'Times New Roman', serif;
         }
@@ -38,7 +36,7 @@
             display: none;
             position: fixed;
             top: 20px;
-            left: 20px;
+            right: 20px; /* À droite pour ne pas gêner le logo dans la sidebar */
             z-index: 1000;
             background: #fff;
             border: 1px solid var(--border);
@@ -100,17 +98,18 @@
             text-align: center;
         }
 
-        section { margin-bottom: 120px; padding-top: 40px; }
+        section { margin-bottom: 120px; padding-top: 40px; display: flex; flex-direction: column; }
 
-        h1 { font-family: var(--font-titles); text-transform: uppercase; font-size: 2rem; margin-bottom: 15px; letter-spacing: 2px; }
-        .subtitle { font-family: var(--font-titles); text-transform: uppercase; font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 60px; }
+        h1 { font-family: var(--font-titles); text-transform: uppercase; font-size: 2rem; margin-bottom: 15px; letter-spacing: 2px; order: 1; }
+        .subtitle { font-family: var(--font-titles); text-transform: uppercase; font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 40px; order: 2; }
         h2 { font-family: var(--font-titles); text-transform: uppercase; font-size: 1.5rem; margin-bottom: 30px; }
 
-        .location-tag { font-family: var(--font-titles); font-size: 0.9rem; text-transform: uppercase; margin-top: 40px; letter-spacing: 2px; }
-        .price { font-family: var(--font-titles); font-size: 2.2rem; font-weight: 700; margin: 10px 0 40px 0; }
+        .hero-img { width: 100%; height: 450px; object-fit: cover; margin-bottom: 40px; order: 3; }
+        .hero-info { order: 4; }
 
-        /* --- IMAGES & GRILLES --- */
-        .hero-img { width: 100%; height: 450px; object-fit: cover; margin-bottom: 60px; }
+        .location-tag { font-family: var(--font-titles); font-size: 0.9rem; text-transform: uppercase; margin-top: 20px; letter-spacing: 2px; }
+        .price { font-family: var(--font-titles); font-size: 2.2rem; font-weight: 700; margin: 10px 0 30px 0; }
+
         .photo-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin: 50px 0; }
         .photo-duo img { width: 100%; height: 380px; object-fit: cover; }
 
@@ -138,8 +137,16 @@
             aside { transform: translateX(-100%); }
             aside.open { transform: translateX(0); }
             main { margin-left: 0; width: 100%; }
-            .hero-img { height: 300px; }
-            .photo-duo, .grid-intervention { grid-template-columns: 1fr; }
+            .content-wrapper { padding: 40px 15px; }
+            section { margin-bottom: 60px; }
+            
+            h1 { font-size: 1.6rem; }
+            .subtitle { font-size: 0.9rem; margin-bottom: 30px; }
+            .hero-img { height: 280px; }
+            .price { font-size: 1.8rem; }
+            
+            .photo-duo, .grid-intervention { grid-template-columns: 1fr; gap: 15px; }
+            .photo-duo img { height: 300px; }
         }
     </style>
 </head>
@@ -171,12 +178,16 @@
         <div class="content-wrapper">
             
             <section id="accueil">
-                <img src="vue-paris.jpg" alt="Toits de Paris" class="hero-img">
                 <h1>Inspection de toiture et façade</h1>
                 <div class="subtitle">Immeubles Haussmanniens</div>
-                <div class="location-tag">Forfait Paris et Île-de-France</div>
-                <div class="price">600€ HT</div>
-                <a href="mailto:contact@capcordes.fr" class="btn">Réserver une inspection</a>
+                
+                <img src="vue-paris.jpg" alt="Toits de Paris" class="hero-img">
+                
+                <div class="hero-info">
+                    <div class="location-tag">Forfait Paris et Île-de-France</div>
+                    <div class="price">600€ HT</div>
+                    <a href="mailto:contact@capcordes.fr" class="btn">Réserver une inspection</a>
+                </div>
             </section>
 
             <section id="expertise">
@@ -221,7 +232,7 @@
 
             <section id="contact">
                 <h2>Prêt pour une inspection ?</h2>
-                <p>Intervention rapide sur Paris et l'ensemble de la région parisienne.</p>
+                <p style="margin-bottom: 30px;">Intervention rapide sur Paris et l'ensemble de la région parisienne.</p>
                 <a href="mailto:contact@capcordes.fr" class="btn">Nous contacter</a>
             </section>
 
