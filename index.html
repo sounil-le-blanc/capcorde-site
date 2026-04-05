@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cap Cordes | Inspection et Travaux Acrobatiques</title>
-    
-    <link rel="icon" type="image/png" href="favicon.ico">
-    
+    <title>Cap Cordes | Inspection et Travaux</title>
+    <link rel="icon" type="image/png" href="favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -31,6 +29,29 @@
             line-height: 1.6;
         }
 
+        /* --- BOUTON BURGER (MOBILE UNIQUEMENT) --- */
+        .burger-btn {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 200;
+            background: #fff;
+            border: 1px solid var(--border);
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .burger-btn span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: var(--accent);
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+
         /* --- SIDEBAR --- */
         aside {
             width: var(--sidebar-width);
@@ -42,7 +63,8 @@
             display: flex;
             flex-direction: column;
             background: #fff;
-            z-index: 100;
+            z-index: 150;
+            transition: transform 0.3s ease-in-out;
         }
 
         .logo-container { margin-bottom: 40px; }
@@ -57,9 +79,7 @@
             font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            transition: 0.3s;
         }
-        nav ul li a:hover { color: #888; }
 
         /* --- MAIN CONTENT --- */
         main {
@@ -76,96 +96,15 @@
             text-align: center;
         }
 
+        /* --- SECTIONS --- */
         section { margin-bottom: 120px; }
-
-        h1 {
-            font-family: var(--font-titles);
-            text-transform: uppercase;
-            font-size: 2rem;
-            letter-spacing: 2px;
-            margin-bottom: 15px;
-        }
-
-        .subtitle {
-            font-family: var(--font-titles);
-            text-transform: uppercase;
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            margin-bottom: 60px;
-            letter-spacing: 1px;
-        }
-
-        h2 {
-            font-family: var(--font-titles);
-            text-transform: uppercase;
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            letter-spacing: 1px;
-        }
-
-        .location-tag {
-            font-family: var(--font-titles);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            margin-top: 40px;
-            letter-spacing: 2px;
-        }
-
-        .price {
-            font-family: var(--font-titles);
-            font-size: 2.2rem;
-            font-weight: 700;
-            margin: 10px 0 40px 0;
-        }
-
-        .description {
-            max-width: 650px;
-            margin: 0 auto 50px auto;
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-        }
-
-        .hero-img {
-            width: 100%;
-            height: 450px;
-            object-fit: cover;
-            margin-bottom: 60px;
-        }
-
-        .photo-duo {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            margin: 50px 0;
-        }
-
-        .photo-duo img {
-            width: 100%;
-            height: 380px;
-            object-fit: cover;
-        }
-
-        .grid-intervention {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            margin: 50px 0;
-        }
-
-        .card {
-            border: 1px solid var(--border);
-            padding: 35px;
-            text-align: left;
-            border-radius: 4px;
-        }
-
-        .card h3 {
-            font-family: var(--font-titles);
-            font-size: 0.85rem;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-        }
-
+        h1 { font-family: var(--font-titles); text-transform: uppercase; font-size: 2rem; margin-bottom: 15px; }
+        .subtitle { font-family: var(--font-titles); text-transform: uppercase; font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 60px; }
+        .price { font-family: var(--font-titles); font-size: 2.2rem; font-weight: 700; margin: 10px 0 40px 0; }
+        .hero-img { width: 100%; height: 450px; object-fit: cover; margin-bottom: 60px; }
+        .photo-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin: 50px 0; }
+        .photo-duo img { width: 100%; height: 380px; object-fit: cover; }
+        
         .btn {
             font-family: var(--font-titles);
             display: inline-block;
@@ -175,152 +114,80 @@
             color: var(--accent);
             font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: 0.3s;
             border-radius: 50px;
         }
 
-        .btn:hover { background: var(--accent); color: #fff; }
-
         /* --- RESPONSIVE MOBILE --- */
-@media (max-width: 1024px) {
-    body { 
-        flex-direction: column; 
-    }
-    
-    aside {
-        width: 100%;
-        height: auto;
-        position: relative;
-        border-right: none;
-        border-bottom: 1px solid var(--border);
-        padding: 15px; /* On réduit l'épaisseur du bloc */
-        text-align: center;
-        display: flex;
-        flex-direction: row; /* Aligne logo et menu sur une ligne */
-        justify-content: space-between;
-        align-items: center;
-    }
+        @media (max-width: 1024px) {
+            .burger-btn { display: block; }
+            
+            aside {
+                transform: translateX(-100%); /* Caché à gauche */
+                box-shadow: 10px 0 30px rgba(0,0,0,0.1);
+            }
 
-    .logo-container {
-        margin-bottom: 0;
-        width: 100px; /* Logo plus petit sur mobile */
-    }
+            aside.open {
+                transform: translateX(0); /* Affiche le menu */
+            }
 
-    nav ul {
-        margin-top: 0;
-        display: flex;
-        gap: 10px;
-        overflow-x: auto; /* Permet de faire défiler le menu s'il est trop long */
-        padding-bottom: 5px;
-    }
+            main {
+                margin-left: 0;
+                width: 100%;
+            }
 
-    nav ul li {
-        margin-bottom: 0;
-        white-space: nowrap; /* Empêche le texte de revenir à la ligne */
-    }
-
-    nav ul li a {
-        font-size: 0.65rem; /* Texte plus discret */
-    }
-
-    .footer-sidebar {
-        display: none; /* On cache le texte de copyright sur mobile pour gagner de la place */
-    }
-
-    main {
-        margin-left: 0;
-        width: 100%;
-    }
-
-    .container {
-        padding: 40px 15px;
-    }
-
-    h1 { font-size: 1.5rem; }
-    .subtitle { font-size: 0.9rem; margin-bottom: 30px; }
-    .hero-img { height: 250px; }
-}
+            .hero-img { height: 300px; }
+            .photo-duo { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
 
-    <aside>
+    <div class="burger-btn" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <aside id="sidebar">
         <div class="logo-container">
             <img src="logo.png" alt="Cap Cordes" class="logo-img">
         </div>
         <nav>
             <ul>
-                <li><a href="#accueil">Forfait inspection toiture</a></li>
-                <li><a href="#restauration">Restauration de pierre</a></li>
-                <li><a href="#infiltration">Recherche d'infiltration</a></li>
-                <li><a href="#entretien">Entretien</a></li>
-                <li><a href="#courettes">Rénovation de courettes</a></li>
-                <li><a href="#speciaux">Travaux spéciaux</a></li>
-                <li><a href="#a-propos">Qui sommes nous ?</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#accueil" onclick="toggleMenu()">Forfait inspection toiture</a></li>
+                <li><a href="#restauration" onclick="toggleMenu()">Restauration de pierre</a></li>
+                <li><a href="#infiltration" onclick="toggleMenu()">Recherche d'infiltration</a></li>
+                <li><a href="#entretien" onclick="toggleMenu()">Entretien</a></li>
+                <li><a href="#courettes" onclick="toggleMenu()">Rénovation de courettes</a></li>
+                <li><a href="#speciaux" onclick="toggleMenu()">Travaux spéciaux</a></li>
+                <li><a href="#a-propos" onclick="toggleMenu()">Qui sommes nous ?</a></li>
+                <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
             </ul>
         </nav>
     </aside>
 
     <main>
         <div class="content-wrapper">
-            
             <section id="accueil">
                 <img src="vue-paris.jpg" alt="Toits de Paris" class="hero-img">
                 <h1>Inspection de toiture et façade</h1>
                 <div class="subtitle">Immeubles Haussmanniens</div>
-                
-                <div class="location-tag">Forfait Paris et Île-de-France</div>
                 <div class="price">600€ HT</div>
-                
                 <a href="#contact" class="btn">Réserver une inspection</a>
             </section>
 
-            <section id="expertise">
-                <h2>L'exigence du bâti ancien</h2>
-                <p class="description">La pierre de taille et les toitures à la Mansart demandent un œil expert. Nous identifions les désordres structurels et les infiltrations avant qu'ils ne deviennent critiques.</p>
-                <div class="photo-duo">
-                    <img src="chantier1.jpg" alt="Inspection cordiste">
-                    <img src="chantier2.jpg" alt="Travail sur zinc">
-                </div>
-            </section>
-
-            <section id="intervention">
-                <h2>Notre intervention</h2>
-                <div class="grid-intervention">
-                    <div class="card">
-                        <h3>Inspection Façade</h3>
-                        <p>Analyse des fissures, épaufrures et vérification de la stabilité des éléments d'ornement.</p>
-                    </div>
-                    <div class="card">
-                        <h3>Contrôle Toiture</h3>
-                        <p>Vérification de l'étanchéité des zingueries, des chéneaux et de l'état des ardoises.</p>
-                    </div>
-                    <div class="card">
-                        <h3>Mise en Sécurité</h3>
-                        <p>Purge immédiate des éléments menaçant de chuter sur la voie publique.</p>
-                    </div>
-                    <div class="card">
-                        <h3>Rapport Technique</h3>
-                        <p>Dossier complet avec photos HD pour accompagner vos futurs appels d'offres.</p>
-                    </div>
-                </div>
-                
-                <div class="location-tag" style="margin-top: 60px;">Forfait Paris et Île-de-France</div>
-                <div class="price">600€ HT</div>
-                
-                <a href="#contact" class="btn">Réserver une inspection</a>
-            </section>
-
-            <section id="contact">
-                <h2>Prêt pour une inspection ?</h2>
-                <p class="description">Contactez-nous pour une intervention rapide sur Paris et l'ensemble de la région parisienne.</p>
-                <a href="mailto:contact@capcordes.fr" class="btn">Réserver une inspection</a>
-            </section>
-
-        </div>
+            </div>
     </main>
+
+    <script>
+        function toggleMenu() {
+            const sidebar = document.getElementById('sidebar');
+            // On ne déclenche l'ouverture que si on est sur mobile
+            if (window.innerWidth <= 1024) {
+                sidebar.classList.toggle('open');
+            }
+        }
+    </script>
 
 </body>
 </html>
