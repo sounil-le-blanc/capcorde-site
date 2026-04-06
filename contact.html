@@ -7,7 +7,6 @@
     <link rel="icon" type="image/png" href="favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800&display=swap" rel="stylesheet">
     <style>
-        /* On reprend exactement le même CSS que l'index pour la cohérence */
         :root {
             --bg-color: #ffffff;
             --text-main: #1a1a1a;
@@ -20,42 +19,145 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: var(--font-body); display: flex; color: var(--text-main); line-height: 1.6; }
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            line-height: 1.6;
+        }
 
-        /* Sidebar (identique à l'index) */
-        aside { width: var(--sidebar-width); height: 100vh; position: fixed; left: 0; top: 0; border-right: 1px solid var(--border); padding: 40px 30px; background: #fff; z-index: 500; }
-        .logo-img { max-width: 100%; height: auto; margin-bottom: 40px; }
+        /* --- MENU BURGER (MOBILE) --- */
+        .burger-btn {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: #fff;
+            border: 1px solid var(--border);
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .burger-btn span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: var(--accent);
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+
+        /* --- SIDEBAR --- */
+        aside {
+            width: var(--sidebar-width);
+            height: 100vh;
+            position: fixed;
+            left: 0; top: 0;
+            border-right: 1px solid var(--border);
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            z-index: 500;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .logo-container { margin-bottom: 40px; }
+        .logo-img { max-width: 100%; height: auto; display: block; }
+
         nav ul { list-style: none; }
         nav ul li { margin-bottom: 12px; }
-        nav ul li a { font-family: var(--font-titles); text-decoration: none; color: var(--text-main); font-size: 0.7rem; text-transform: uppercase; }
+        nav ul li a {
+            font-family: var(--font-titles);
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        nav ul li a:hover { color: #888; }
 
-        /* Contenu spécifique Contact */
-        main { margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width)); display: flex; justify-content: center; }
-        .content-wrapper { max-width: 850px; width: 100%; padding: 100px 40px; text-align: center; }
-        
+        /* --- CONTENU --- */
+        main {
+            margin-left: var(--sidebar-width);
+            width: calc(100% - var(--sidebar-width));
+            display: flex;
+            justify-content: center;
+        }
+
+        .content-wrapper {
+            max-width: 850px;
+            width: 100%;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
         h1 { font-family: var(--font-titles); text-transform: uppercase; font-size: 2.5rem; margin-bottom: 60px; letter-spacing: 2px; }
+        
         .contact-card { margin-bottom: 40px; }
         .label { font-family: var(--font-titles); font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 10px; }
         .info-value { font-size: 1.4rem; font-weight: bold; text-decoration: none; color: var(--text-main); }
         .address { font-size: 1.1rem; color: var(--text-main); }
 
-        .btn { font-family: var(--font-titles); display: inline-block; padding: 18px 40px; border: 1px solid var(--accent); text-decoration: none; color: #fff; background: var(--accent); font-size: 0.75rem; text-transform: uppercase; border-radius: 50px; margin-top: 30px; }
+        .btn {
+            font-family: var(--font-titles);
+            display: inline-block;
+            padding: 18px 40px;
+            border: 1px solid var(--accent);
+            text-decoration: none;
+            color: #fff;
+            background: var(--accent);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            border-radius: 50px;
+            margin-top: 30px;
+            transition: 0.3s;
+        }
+        .btn:hover { opacity: 0.8; }
 
+        /* --- RESPONSIVE --- */
         @media (max-width: 1024px) {
-            aside { display: none; } /* On simplifie pour la démo, ou tu remets ton burger ici */
-            main { margin-left: 0; width: 100%; }
+            .burger-btn { display: block; }
+            aside { 
+                transform: translateX(-100%); 
+                width: 280px;
+            }
+            aside.open { 
+                transform: translateX(0); 
+            }
+            main { 
+                margin-left: 0; 
+                width: 100%; 
+            }
+            .content-wrapper { padding: 80px 20px; }
+            h1 { font-size: 2rem; margin-bottom: 40px; }
+            .info-value { font-size: 1.2rem; }
         }
     </style>
 </head>
 <body>
 
-    <aside>
-        <img src="logo.png" alt="Cap Cordes" class="logo-img">
+    <div class="burger-btn" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+    </div>
+
+    <aside id="sidebar">
+        <div class="logo-container">
+            <img src="logo.png" alt="Cap Cordes" class="logo-img">
+        </div>
         <nav>
             <ul>
-                <li><a href="index.html">Forfait inspection toiture</a></li>
-                <li><a href="index.html#expertise">Restauration de pierre</a></li>
-                <li><a href="index.html#intervention">Recherche d'infiltration</a></li>
+                <li><a href="#accueil" onclick="toggleMenu()">Forfait inspection toiture</a></li>
+                <li><a href="#expertise" onclick="toggleMenu()">Restauration de pierre</a></li>
+                <li><a href="#intervention" onclick="toggleMenu()">Recherche d'infiltration</a></li>
+                <li><a href="#accueil" onclick="toggleMenu()">Entretien</a></li>
+                <li><a href="#accueil" onclick="toggleMenu()">Rénovation de courettes</a></li>
+                <li><a href="#accueil" onclick="toggleMenu()">Travaux spéciaux</a></li>
+                <li><a href="#expertise" onclick="toggleMenu()">Qui sommes nous ?</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
@@ -88,5 +190,12 @@
         </div>
     </main>
 
+    <script>
+        function toggleMenu() {
+            if (window.innerWidth <= 1024) {
+                document.getElementById('sidebar').classList.toggle('open');
+            }
+        }
+    </script>
 </body>
 </html>
