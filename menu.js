@@ -7,7 +7,12 @@ class CapCordesMenu extends HTMLElement {
 
             <aside id="sidebar">
                 <div class="logo-container">
-                    <img src="logo.png" alt="Cap Cordes" class="logo-img">
+                    <img src="logo.png" 
+                         alt="Cap Cordes" 
+                         class="logo-img" 
+                         width="220" 
+                         height="80" 
+                         fetchpriority="high">
                 </div>
                 <nav>
                     <ul>
@@ -24,7 +29,6 @@ class CapCordesMenu extends HTMLElement {
             </aside>
         `;
 
-        // Ajout de l'événement pour le bouton burger
         const burger = this.querySelector('#burgerBtn');
         const sidebar = this.querySelector('#sidebar');
         
@@ -34,14 +38,14 @@ class CapCordesMenu extends HTMLElement {
             }
         });
 
-        // Fermer le menu si on clique sur un lien (mobile)
         const links = this.querySelectorAll('nav a');
         links.forEach(link => {
             link.addEventListener('click', () => {
-                sidebar.classList.remove('open');
+                if (window.innerWidth <= 1024) {
+                    sidebar.classList.remove('open');
+                }
             });
         });
     }
 }
-
 customElements.define('cap-cordes-menu', CapCordesMenu);

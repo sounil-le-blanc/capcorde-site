@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travaux Spéciaux | Cap Cordes</title>
+    
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800&display=block" rel="stylesheet">
+    
     <style>
         :root {
             --bg-color: #ffffff;
@@ -21,7 +26,6 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
         
-        /* On prépare la structure flex pour le menu */
         body { 
             font-family: var(--font-body); 
             background-color: var(--bg-color); 
@@ -31,15 +35,59 @@
             margin: 0;
         }
 
-        /* STABILISATION DU MENU : On réserve l'espace AVANT le chargement du JS */
+        /* 2. RÉSERVATION STRICTE DE L'ESPACE MENU */
         cap-cordes-menu {
             display: block;
             width: var(--sidebar-width);
             min-width: var(--sidebar-width);
             height: 100vh;
+            flex-shrink: 0;
+            background-color: #fff;
         }
 
-        /* CONTENU : Il prend tout l'espace restant sans sauter */
+        /* 3. STABILISATION DU LOGO */
+        .logo-img { 
+            width: 220px; 
+            height: 80px; 
+            display: block; 
+            margin-bottom: 40px; 
+            object-fit: contain;
+        }
+
+        /* 4. STABILISATION DES ONGLETS DU MENU */
+        nav ul { list-style: none; }
+        nav ul li { 
+            margin-bottom: 12px; 
+            height: 24px; 
+            display: flex;
+            align-items: center;
+        }
+        nav ul li a { 
+            font-family: var(--font-titles); 
+            text-decoration: none; 
+            color: var(--text-main); 
+            font-size: 0.7rem; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+            white-space: nowrap;
+            line-height: 1;
+        }
+
+        /* 5. STRUCTURE ASIDE (Injectée) */
+        aside { 
+            width: var(--sidebar-width); 
+            height: 100vh; 
+            position: fixed; 
+            left: 0; top: 0; 
+            border-right: 1px solid var(--border); 
+            padding: 40px 30px; 
+            display: flex; 
+            flex-direction: column; 
+            background: #fff; 
+            z-index: 500; 
+        }
+
+        /* --- CONTENU --- */
         main { 
             flex-grow: 1;
             min-width: 0;
@@ -49,17 +97,7 @@
 
         .content-wrapper { max-width: 850px; width: 100%; padding: 100px 20px; text-align: center; }
 
-        /* ÉLÉMENTS INTERNES DU MENU (Injectés par menu.js) */
-        aside { width: var(--sidebar-width); height: 100vh; position: fixed; left: 0; top: 0; border-right: 1px solid var(--border); padding: 40px 30px; display: flex; flex-direction: column; background: #fff; z-index: 500; transition: transform 0.3s ease-in-out; }
-        .logo-img { max-width: 100%; height: auto; display: block; margin-bottom: 40px; }
-        nav ul { list-style: none; }
-        nav ul li { margin-bottom: 12px; }
-        nav ul li a { font-family: var(--font-titles); text-decoration: none; color: var(--text-main); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; }
-
-        .burger-btn { display: none; position: fixed; top: 20px; right: 20px; z-index: 1000; background: #fff; border: 1px solid var(--border); padding: 10px; cursor: pointer; border-radius: 5px; }
-        .burger-btn span { display: block; width: 25px; height: 2px; background: var(--accent); margin: 5px 0; transition: 0.3s; }
-
-        /* STYLE DES PAGES */
+        /* --- STYLE SPÉCIFIQUE PAGE TRAVAUX SPÉCIAUX --- */
         h1 { font-family: var(--font-titles); text-transform: uppercase; font-size: 2.2rem; margin-bottom: 20px; letter-spacing: 2px; }
         .subtitle { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 60px; text-transform: uppercase; letter-spacing: 1px; }
         .big-image { width: 100%; height: 500px; object-fit: cover; margin-bottom: 60px; filter: grayscale(20%); }
@@ -69,11 +107,14 @@
         .expert-block { margin-top: 80px; text-align: left; padding: 40px; background: #fdfdfd; border: 1px solid var(--border); }
         .btn { font-family: var(--font-titles); display: inline-block; padding: 18px 40px; border: 1px solid var(--accent); text-decoration: none; color: #fff; background: var(--accent); font-size: 0.75rem; text-transform: uppercase; border-radius: 50px; transition: 0.3s; margin-top: 40px; }
 
+        .burger-btn { display: none; position: fixed; top: 20px; right: 20px; z-index: 1000; background: #fff; border: 1px solid var(--border); padding: 10px; cursor: pointer; border-radius: 5px; }
+        .burger-btn span { display: block; width: 25px; height: 2px; background: var(--accent); margin: 5px 0; transition: 0.3s; }
+
         /* RESPONSIVE */
         @media (max-width: 1024px) {
             cap-cordes-menu { width: 0; min-width: 0; }
             .burger-btn { display: block; }
-            aside { transform: translateX(-100%); width: 280px; }
+            aside { transform: translateX(-100%); transition: transform 0.3s ease; width: 280px; }
             aside.open { transform: translateX(0); }
             main { width: 100%; }
             .content-wrapper { padding: 80px 20px; }
