@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recherche de Fuite | Cap Cordes</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #1a1a1a;
+            --text-secondary: #555555;
+            --accent: #000000;
+            --border: #eeeeee;
+            --sidebar-width: 280px;
+            --font-titles: 'Orbitron', sans-serif;
+            --font-body: 'Xenara', 'Times New Roman', serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); background-color: var(--bg-color); color: var(--text-main); display: flex; line-height: 1.6; }
+
+        /* --- SIDEBAR --- */
+        aside { width: var(--sidebar-width); height: 100vh; position: fixed; left: 0; top: 0; border-right: 1px solid var(--border); padding: 40px 30px; display: flex; flex-direction: column; background: #fff; z-index: 500; transition: transform 0.3s ease-in-out; }
+        .logo-img { max-width: 100%; height: auto; display: block; margin-bottom: 40px; }
+        nav ul { list-style: none; }
+        nav ul li { margin-bottom: 12px; }
+        nav ul li a { font-family: var(--font-titles); text-decoration: none; color: var(--text-main); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- BURGER --- */
+        .burger-btn { display: none; position: fixed; top: 20px; right: 20px; z-index: 1000; background: #fff; border: 1px solid var(--border); padding: 10px; cursor: pointer; border-radius: 5px; }
+        .burger-btn span { display: block; width: 25px; height: 2px; background: var(--accent); margin: 5px 0; }
+
+        /* --- CONTENU --- */
+        main { margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width)); display: flex; justify-content: center; }
+        .content-wrapper { max-width: 850px; width: 100%; padding: 100px 20px; }
+
+        h1 { font-family: var(--font-titles); text-transform: uppercase; font-size: 2.2rem; margin-bottom: 20px; letter-spacing: 2px; text-align: center; }
+        .price-tag { font-family: var(--font-titles); font-size: 1.5rem; color: var(--accent); margin-bottom: 40px; text-align: center; font-weight: 800; }
+
+        .hero-box { border: 1px solid var(--border); padding: 40px; margin-bottom: 60px; text-align: left; }
+        .hero-box h2 { font-family: var(--font-titles); font-size: 1rem; text-transform: uppercase; margin-bottom: 20px; }
+
+        .details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 60px; text-align: left; }
+        .detail-item h3 { font-family: var(--font-titles); font-size: 0.8rem; text-transform: uppercase; margin-bottom: 10px; color: var(--text-secondary); }
+
+        .warning-box { background: #f9f9f9; padding: 30px; border-left: 4px solid var(--accent); margin-bottom: 60px; text-align: left; font-size: 0.9rem; }
+        .warning-box h3 { font-family: var(--font-titles); font-size: 0.8rem; text-transform: uppercase; margin-bottom: 15px; }
+
+        .btn { font-family: var(--font-titles); display: inline-block; padding: 18px 40px; border: 1px solid var(--accent); text-decoration: none; color: #fff; background: var(--accent); font-size: 0.75rem; text-transform: uppercase; border-radius: 50px; transition: 0.3s; }
+
+        @media (max-width: 1024px) {
+            .burger-btn { display: block; }
+            aside { transform: translateX(-100%); width: 280px; }
+            aside.open { transform: translateX(0); }
+            main { margin-left: 0; width: 100%; }
+            .details-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="burger-btn" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+    </div>
+
+    <aside id="sidebar">
+        <img src="logo.png" alt="Cap Cordes" class="logo-img">
+        <nav>
+            <ul>
+                <li><a href="index.html">Forfait inspection toiture</a></li>
+                <li><a href="restauration.html">Restauration de pierre</a></li>
+                <li><a href="infiltration.html">Recherche d'infiltration</a></li>
+                <li><a href="entretien.html">Entretien</a></li>
+                <li><a href="courettes.html">Rénovation de courettes</a></li>
+                <li><a href="travaux-speciaux.html">Travaux spéciaux</a></li>
+                <li><a href="equipe.html">Qui sommes nous ?</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main>
+        <div class="content-wrapper">
+            <h1>Recherche de Fuite</h1>
+            <div class="price-tag">950,00 € HT</div>
+
+            <div class="hero-box">
+                <h2>Forfait Intervention Expert</h2>
+                <p>Un diagnostic complet et sans concession pour identifier l'origine exacte de vos infiltrations. Nos techniciens cordistes interviennent là où les nacelles ne peuvent accéder.</p>
+            </div>
+
+            <div class="details-grid">
+                <div class="detail-item">
+                    <h3>Durée de l'intervention</h3>
+                    <p>Forfait basé sur une vacation de 3 heures sur site pour une recherche approfondie.</p>
+                </div>
+                <div class="detail-item">
+                    <h3>Livrable</h3>
+                    <p>Rapport de préconisation détaillé incluant photos et solutions techniques de réparation.</p>
+                </div>
+                <div class="detail-item">
+                    <h3>Technique</h3>
+                    <p>Mise en eau, tests colorimétriques et inspection visuelle par cordistes certifiés.</p>
+                </div>
+                <div class="detail-item">
+                    <h3>Engagement</h3>
+                    <p>Cap Cordes s'engage sur la précision du diagnostic pour stopper durablement vos fuites.</p>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <h3>Important - Conditions de réussite</h3>
+                <p>Pour garantir un diagnostic complet, nous avons impérativement besoin d'accéder à <strong>tous les appartements concernés</strong> par la fuite pendant toute la durée de l'intervention (3h).</p>
+                <p style="margin-top: 10px; font-style: italic; color: #777;">Note : En cas d'absence au rendez-vous, les sommes engagées ne sont pas remboursables.</p>
+            </div>
+
+            <div style="text-align: center;">
+                <a href="contact.html" class="btn">Réserver le forfait</a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function toggleMenu() {
+            if (window.innerWidth <= 1024) {
+                document.getElementById('sidebar').classList.toggle('open');
+            }
+        }
+    </script>
+</body>
+</html>

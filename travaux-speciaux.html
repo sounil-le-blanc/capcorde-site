@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travaux Spéciaux | Cap Cordes</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #1a1a1a;
+            --text-secondary: #555555;
+            --accent: #000000;
+            --border: #eeeeee;
+            --sidebar-width: 280px;
+            --font-titles: 'Orbitron', sans-serif;
+            --font-body: 'Xenara', 'Times New Roman', serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); background-color: var(--bg-color); color: var(--text-main); display: flex; line-height: 1.6; }
+
+        /* --- SIDEBAR --- */
+        aside { width: var(--sidebar-width); height: 100vh; position: fixed; left: 0; top: 0; border-right: 1px solid var(--border); padding: 40px 30px; display: flex; flex-direction: column; background: #fff; z-index: 500; transition: transform 0.3s ease-in-out; }
+        .logo-img { max-width: 100%; height: auto; display: block; margin-bottom: 40px; }
+        nav ul { list-style: none; }
+        nav ul li { margin-bottom: 12px; }
+        nav ul li a { font-family: var(--font-titles); text-decoration: none; color: var(--text-main); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- BURGER --- */
+        .burger-btn { display: none; position: fixed; top: 20px; right: 20px; z-index: 1000; background: #fff; border: 1px solid var(--border); padding: 10px; cursor: pointer; border-radius: 5px; }
+        .burger-btn span { display: block; width: 25px; height: 2px; background: var(--accent); margin: 5px 0; }
+
+        /* --- CONTENU --- */
+        main { margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width)); display: flex; justify-content: center; }
+        .content-wrapper { max-width: 850px; width: 100%; padding: 100px 20px; text-align: center; }
+
+        h1 { font-family: var(--font-titles); text-transform: uppercase; font-size: 2.2rem; margin-bottom: 20px; letter-spacing: 2px; }
+        .subtitle { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 60px; text-transform: uppercase; letter-spacing: 1px; }
+
+        .big-image { width: 100%; height: 500px; object-fit: cover; margin-bottom: 60px; filter: grayscale(20%); }
+
+        .speciaux-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; text-align: left; }
+        .speciaux-item { padding: 30px; border: 1px solid var(--border); }
+        .speciaux-item h2 { font-family: var(--font-titles); font-size: 0.9rem; text-transform: uppercase; margin-bottom: 15px; color: var(--accent); }
+        
+        .expert-block { margin-top: 80px; text-align: left; padding: 40px; background: #fdfdfd; border: 1px solid var(--border); }
+        .expert-block h3 { font-family: var(--font-titles); text-transform: uppercase; font-size: 1.1rem; margin-bottom: 20px; }
+
+        .btn { font-family: var(--font-titles); display: inline-block; padding: 18px 40px; border: 1px solid var(--accent); text-decoration: none; color: #fff; background: var(--accent); font-size: 0.75rem; text-transform: uppercase; border-radius: 50px; transition: 0.3s; margin-top: 40px; }
+
+        @media (max-width: 1024px) {
+            .burger-btn { display: block; }
+            aside { transform: translateX(-100%); width: 280px; }
+            aside.open { transform: translateX(0); }
+            main { margin-left: 0; width: 100%; }
+            .speciaux-grid { grid-template-columns: 1fr; }
+            .big-image { height: 300px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="burger-btn" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+    </div>
+
+    <aside id="sidebar">
+        <img src="logo.png" alt="Cap Cordes" class="logo-img">
+        <nav>
+            <ul>
+                <li><a href="index.html">Forfait inspection toiture</a></li>
+                <li><a href="restauration.html">Restauration de pierre</a></li>
+                <li><a href="infiltration.html">Recherche d'infiltration</a></li>
+                <li><a href="entretien.html">Entretien</a></li>
+                <li><a href="courettes.html">Rénovation de courettes</a></li>
+                <li><a href="travaux-speciaux.html">Travaux spéciaux</a></li>
+                <li><a href="equipe.html">Qui sommes nous ?</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main>
+        <div class="content-wrapper">
+            <h1>Travaux Spéciaux</h1>
+            <p class="subtitle">L'ingénierie de l'extrême au service de vos structures.</p>
+
+            <img src="travaux-grande-hauteur.jpg" alt="Nettoyage de tour" class="big-image">
+
+            <div class="speciaux-grid">
+                <div class="speciaux-item">
+                    <h2>Maintenance de Tours</h2>
+                    <p>Nettoyage haute pression, vitrages et maintenance technique sur immeubles de grande hauteur (IGH). Une expertise pointue pour les façades modernes.</p>
+                </div>
+                <div class="speciaux-item">
+                    <h2>Sécurisation sur-mesure</h2>
+                    <p>Conception et installation de lignes de vie, points d'ancrage et filets de protection. Nous rendons vos toitures conformes aux normes de sécurité.</p>
+                </div>
+                <div class="speciaux-item">
+                    <h2>Événementiel & Publicité</h2>
+                    <p>Pose de bâches publicitaires grand format et installations temporaires complexes pour le secteur de la communication et du cinéma.</p>
+                </div>
+                <div class="speciaux-item">
+                    <h2>Expertise Industrielle</h2>
+                    <p>Intervention en milieux confinés, silos, ou sur structures métalliques complexes nécessitant une maîtrise totale des cordes.</p>
+                </div>
+            </div>
+
+            <div class="expert-block">
+                <h3>Une approche par l'ingénierie</h3>
+                <p>Chaque projet spécial fait l'objet d'une étude de risques et d'un plan de prévention rigoureux. <strong>Cap Cordes</strong> ne se contente pas de descendre en rappel : nous concevons la solution technique la plus sûre pour vos projets atypiques.</p>
+                <a href="contact.html" class="btn">Étudier mon projet</a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function toggleMenu() {
+            if (window.innerWidth <= 1024) {
+                document.getElementById('sidebar').classList.toggle('open');
+            }
+        }
+    </script>
+</body>
+</html>

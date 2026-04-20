@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rénovation de Courettes | Cap Cordes</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #1a1a1a;
+            --text-secondary: #555555;
+            --accent: #000000;
+            --border: #eeeeee;
+            --sidebar-width: 280px;
+            --font-titles: 'Orbitron', sans-serif;
+            --font-body: 'Xenara', 'Times New Roman', serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); background-color: var(--bg-color); color: var(--text-main); display: flex; line-height: 1.6; }
+
+        /* --- SIDEBAR --- */
+        aside { width: var(--sidebar-width); height: 100vh; position: fixed; left: 0; top: 0; border-right: 1px solid var(--border); padding: 40px 30px; display: flex; flex-direction: column; background: #fff; z-index: 500; transition: transform 0.3s ease-in-out; }
+        .logo-img { max-width: 100%; height: auto; display: block; margin-bottom: 40px; }
+        nav ul { list-style: none; }
+        nav ul li { margin-bottom: 12px; }
+        nav ul li a { font-family: var(--font-titles); text-decoration: none; color: var(--text-main); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- BURGER --- */
+        .burger-btn { display: none; position: fixed; top: 20px; right: 20px; z-index: 1000; background: #fff; border: 1px solid var(--border); padding: 10px; cursor: pointer; border-radius: 5px; }
+        .burger-btn span { display: block; width: 25px; height: 2px; background: var(--accent); margin: 5px 0; }
+
+        /* --- CONTENU --- */
+        main { margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width)); display: flex; justify-content: center; }
+        .content-wrapper { max-width: 850px; width: 100%; padding: 100px 20px; text-align: center; }
+
+        h1 { font-family: var(--font-titles); text-transform: uppercase; font-size: 2.2rem; margin-bottom: 20px; letter-spacing: 2px; }
+        .subtitle { font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 60px; }
+
+        .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; text-align: left; margin-top: 60px; }
+        .feature-item h2 { font-family: var(--font-titles); font-size: 0.9rem; text-transform: uppercase; margin-bottom: 15px; letter-spacing: 1px; border-bottom: 1px solid var(--accent); display: inline-block; }
+        
+        .hero-img { width: 100%; height: 450px; object-fit: cover; margin-bottom: 40px; background: #f0f0f0; }
+
+        .highlight-box { background: #000; color: #fff; padding: 60px; margin-top: 80px; text-align: center; }
+        .highlight-box h3 { font-family: var(--font-titles); text-transform: uppercase; margin-bottom: 20px; }
+        
+        .btn { font-family: var(--font-titles); display: inline-block; padding: 18px 40px; border: 1px solid var(--accent); text-decoration: none; color: #fff; background: var(--accent); font-size: 0.75rem; text-transform: uppercase; border-radius: 50px; transition: 0.3s; margin-top: 20px; }
+        .btn-white { background: #fff; color: #000; border: 1px solid #fff; }
+
+        @media (max-width: 1024px) {
+            .burger-btn { display: block; }
+            aside { transform: translateX(-100%); width: 280px; }
+            aside.open { transform: translateX(0); }
+            main { margin-left: 0; width: 100%; }
+            .feature-grid { grid-template-columns: 1fr; }
+            .hero-img { height: 300px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="burger-btn" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+    </div>
+
+    <aside id="sidebar">
+        <img src="logo.png" alt="Cap Cordes" class="logo-img">
+        <nav>
+            <ul>
+                <li><a href="index.html">Forfait inspection toiture</a></li>
+                <li><a href="restauration.html">Restauration de pierre</a></li>
+                <li><a href="infiltration.html">Recherche d'infiltration</a></li>
+                <li><a href="entretien.html">Entretien</a></li>
+                <li><a href="courettes.html">Rénovation de courettes</a></li>
+                <li><a href="travaux-speciaux.html">Travaux spéciaux</a></li>
+                <li><a href="equipe.html">Qui sommes nous ?</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main>
+        <div class="content-wrapper">
+            <h1>Rénovation de Courettes</h1>
+            <p class="subtitle">Valorisez vos espaces intérieurs inaccessibles sans l'encombrement d'un échafaudage.</p>
+
+            <img src="renovation-courette.jpg" alt="Travaux en courette" class="hero-img">
+
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h2>Peinture & Ravalement</h2>
+                    <p>Mise en peinture des murs, courettes et puits de lumière pour redonner de la clarté aux appartements donnant sur cour.</p>
+                </div>
+                <div class="feature-item">
+                    <h2>Réfection de descentes</h2>
+                    <p>Remplacement des fontes, des PVC et des conduits d'eaux usées ou pluviales en conduits étroits.</p>
+                </div>
+                <div class="feature-item">
+                    <h2>Traitement des bois</h2>
+                    <p>Ponçage et lasure des menuiseries et pans de bois apparents souvent négligés par manque d'accès.</p>
+                </div>
+                <div class="feature-item">
+                    <h2>Protection Anti-Pigeons</h2>
+                    <p>Installation de dispositifs discrets (pics, filets) pour maintenir la propreté des rebords et corniches.</p>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h3>L'avantage de la corde</h3>
+                <p style="opacity: 0.9; margin-bottom: 30px;">Dans les courettes parisiennes où le passage fait parfois moins d'un mètre, nos cordistes sont les seuls à pouvoir intervenir rapidement, sans bloquer les parties communes.</p>
+                <a href="contact.html" class="btn btn-white">Demander un devis gratuit</a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function toggleMenu() {
+            if (window.innerWidth <= 1024) {
+                document.getElementById('sidebar').classList.toggle('open');
+            }
+        }
+    </script>
+</body>
+</html>

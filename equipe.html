@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qui sommes-nous | Cap Cordes</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #1a1a1a;
+            --text-secondary: #555555;
+            --accent: #000000;
+            --border: #eeeeee;
+            --sidebar-width: 280px;
+            --font-titles: 'Orbitron', sans-serif;
+            --font-body: 'Xenara', 'Times New Roman', serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); background-color: var(--bg-color); color: var(--text-main); display: flex; line-height: 1.6; }
+
+        /* --- SIDEBAR --- */
+        aside { width: var(--sidebar-width); height: 100vh; position: fixed; left: 0; top: 0; border-right: 1px solid var(--border); padding: 40px 30px; display: flex; flex-direction: column; background: #fff; z-index: 500; transition: transform 0.3s ease-in-out; }
+        .logo-img { max-width: 100%; height: auto; display: block; margin-bottom: 40px; }
+        nav ul { list-style: none; }
+        nav ul li { margin-bottom: 12px; }
+        nav ul li a { font-family: var(--font-titles); text-decoration: none; color: var(--text-main); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- BURGER --- */
+        .burger-btn { display: none; position: fixed; top: 20px; right: 20px; z-index: 1000; background: #fff; border: 1px solid var(--border); padding: 10px; cursor: pointer; border-radius: 5px; }
+        .burger-btn span { display: block; width: 25px; height: 2px; background: var(--accent); margin: 5px 0; }
+
+        /* --- CONTENU --- */
+        main { margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width)); display: flex; justify-content: center; }
+        .content-wrapper { max-width: 850px; width: 100%; padding: 100px 20px; }
+
+        h1 { font-family: var(--font-titles); text-transform: uppercase; font-size: 2.2rem; margin-bottom: 40px; letter-spacing: 2px; text-align: center; }
+        
+        .story-section { text-align: left; margin-bottom: 60px; }
+        .story-section p { margin-bottom: 20px; font-size: 1.1rem; color: var(--text-secondary); }
+
+        .values-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 60px; }
+        .value-item h3 { font-family: var(--font-titles); font-size: 0.9rem; text-transform: uppercase; margin-bottom: 15px; border-bottom: 1px solid var(--accent); display: inline-block; }
+
+        .portrait-img { width: 100%; height: 500px; object-fit: cover; margin-bottom: 60px; background: #f5f5f5; }
+
+        .stats-row { display: flex; justify-content: space-between; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 40px 0; margin: 60px 0; }
+        .stat-item { text-align: center; flex: 1; }
+        .stat-number { font-family: var(--font-titles); font-size: 1.5rem; display: block; font-weight: 800; }
+        .stat-label { font-size: 0.7rem; text-transform: uppercase; color: var(--text-secondary); letter-spacing: 1px; }
+
+        @media (max-width: 1024px) {
+            .burger-btn { display: block; }
+            aside { transform: translateX(-100%); width: 280px; }
+            aside.open { transform: translateX(0); }
+            main { margin-left: 0; width: 100%; }
+            .values-grid { grid-template-columns: 1fr; }
+            .stats-row { flex-direction: column; gap: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="burger-btn" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+    </div>
+
+    <aside id="sidebar">
+        <img src="logo.png" alt="Cap Cordes" class="logo-img">
+        <nav>
+            <ul>
+                <li><a href="index.html">Forfait inspection toiture</a></li>
+                <li><a href="restauration.html">Restauration de pierre</a></li>
+                <li><a href="infiltration.html">Recherche d'infiltration</a></li>
+                <li><a href="entretien.html">Entretien</a></li>
+                <li><a href="courettes.html">Rénovation de courettes</a></li>
+                <li><a href="travaux-speciaux.html">Travaux spéciaux</a></li>
+                <li><a href="equipe.html">Qui sommes nous ?</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main>
+        <div class="content-wrapper">
+            <h1>Qui sommes-nous ?</h1>
+            
+            <img src="equipe-cordiste.jpg" alt="L'équipe Cap Cordes en action" class="portrait-img">
+
+            <div class="story-section">
+                <p><strong>Cap Cordes</strong> est née d'une volonté simple : allier l'agilité des travaux d'accès difficile à la rigueur d'une gestion de projet haut de gamme. Basés à Trilport, nous intervenons dans tout le bassin parisien pour répondre aux défis architecturaux les plus complexes.</p>
+                <p>Spécialistes de la corde, nous ne sommes pas uniquement des exécutants, mais de véritables partenaires techniques pour les syndics, les architectes et les propriétaires de bâtiments historiques.</p>
+            </div>
+
+            <div class="stats-row">
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Sécurité certifiée</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">PARIS</span>
+                    <span class="stat-label">Zone d'intervention</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">EXPERT</span>
+                    <span class="stat-label">Diagnostic précis</span>
+                </div>
+            </div>
+
+            <div class="values-grid">
+                <div class="value-item">
+                    <h3>Expertise Technique</h3>
+                    <p>Chaque membre de notre équipe est un professionnel certifié, formé aux spécificités du bâti ancien parisien et aux normes de sécurité les plus strictes.</p>
+                </div>
+                <div class="value-item">
+                    <h3>Réactivité</h3>
+                    <p>L'absence d'échafaudage nous permet de mobiliser nos équipes en un temps record pour des mises en sécurité ou des recherches d'infiltration urgentes.</p>
+                </div>
+                <div class="value-item">
+                    <h3>Transparence</h3>
+                    <p>De la prise de contact au rapport de préconisation final, nous privilégions une communication claire et des devis détaillés sans surprise.</p>
+                </div>
+                <div class="value-item">
+                    <h3>Engagement Patrimoine</h3>
+                    <p>Nous travaillons dans le respect des matériaux nobles. Notre but est de pérenniser la pierre et les structures de vos immeubles.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 80px;">
+                <p style="font-family: var(--font-titles); font-size: 0.8rem; text-transform: uppercase; margin-bottom: 20px;">Prêt à travailler avec nous ?</p>
+                <a href="contact.html" class="btn" style="font-family: var(--font-titles); display: inline-block; padding: 18px 40px; border: 1px solid var(--accent); text-decoration: none; color: #fff; background: var(--accent); font-size: 0.75rem; text-transform: uppercase; border-radius: 50px;">Contactez l'atelier</a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function toggleMenu() {
+            if (window.innerWidth <= 1024) {
+                document.getElementById('sidebar').classList.toggle('open');
+            }
+        }
+    </script>
+</body>
+</html>

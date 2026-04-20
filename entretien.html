@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entretien & Maintenance | Cap Cordes</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #1a1a1a;
+            --text-secondary: #555555;
+            --accent: #000000;
+            --border: #eeeeee;
+            --sidebar-width: 280px;
+            --font-titles: 'Orbitron', sans-serif;
+            --font-body: 'Xenara', 'Times New Roman', serif;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); background-color: var(--bg-color); color: var(--text-main); display: flex; line-height: 1.6; }
+
+        /* --- SIDEBAR --- */
+        aside { width: var(--sidebar-width); height: 100vh; position: fixed; left: 0; top: 0; border-right: 1px solid var(--border); padding: 40px 30px; display: flex; flex-direction: column; background: #fff; z-index: 500; transition: transform 0.3s ease-in-out; }
+        .logo-img { max-width: 100%; height: auto; display: block; margin-bottom: 40px; }
+        nav ul { list-style: none; }
+        nav ul li { margin-bottom: 12px; }
+        nav ul li a { font-family: var(--font-titles); text-decoration: none; color: var(--text-main); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- BURGER --- */
+        .burger-btn { display: none; position: fixed; top: 20px; right: 20px; z-index: 1000; background: #fff; border: 1px solid var(--border); padding: 10px; cursor: pointer; border-radius: 5px; }
+        .burger-btn span { display: block; width: 25px; height: 2px; background: var(--accent); margin: 5px 0; }
+
+        /* --- CONTENU --- */
+        main { margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width)); display: flex; justify-content: center; }
+        .content-wrapper { max-width: 850px; width: 100%; padding: 100px 20px; text-align: center; }
+
+        h1 { font-family: var(--font-titles); text-transform: uppercase; font-size: 2.2rem; margin-bottom: 20px; letter-spacing: 2px; }
+        .intro { font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 60px; max-width: 700px; margin-left: auto; margin-right: auto; }
+
+        .service-list { text-align: left; margin-bottom: 60px; }
+        .service-list h2 { font-family: var(--font-titles); font-size: 1.1rem; text-transform: uppercase; margin-bottom: 25px; border-left: 3px solid var(--accent); padding-left: 15px; }
+        
+        .list-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .list-item { padding: 20px; border-bottom: 1px solid var(--border); }
+        .list-item strong { font-family: var(--font-titles); font-size: 0.8rem; text-transform: uppercase; display: block; margin-bottom: 5px; }
+
+        .full-img { width: 100%; height: 400px; object-fit: cover; margin: 40px 0; background: #f9f9f9; }
+
+        .btn { font-family: var(--font-titles); display: inline-block; padding: 18px 40px; border: 1px solid var(--accent); text-decoration: none; color: #fff; background: var(--accent); font-size: 0.75rem; text-transform: uppercase; border-radius: 50px; transition: 0.3s; }
+
+        @media (max-width: 1024px) {
+            .burger-btn { display: block; }
+            aside { transform: translateX(-100%); width: 280px; }
+            aside.open { transform: translateX(0); }
+            main { margin-left: 0; width: 100%; }
+            .list-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="burger-btn" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+    </div>
+
+    <aside id="sidebar">
+        <img src="logo.png" alt="Cap Cordes" class="logo-img">
+        <nav>
+            <ul>
+                <li><a href="index.html">Forfait inspection toiture</a></li>
+                <li><a href="restauration.html">Restauration de pierre</a></li>
+                <li><a href="infiltration.html">Recherche d'infiltration</a></li>
+                <li><a href="entretien.html">Entretien</a></li>
+                <li><a href="courettes.html">Rénovation de courettes</a></li>
+                <li><a href="travaux-speciaux.html">Travaux spéciaux</a></li>
+                <li><a href="equipe.html">Qui sommes nous ?</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main>
+        <div class="content-wrapper">
+            <h1>Entretien & Maintenance</h1>
+            <p class="intro">Prolongez la durée de vie de votre patrimoine avec des interventions régulières et ciblées.</p>
+
+            <img src="entretien-corde.jpg" alt="Entretien en hauteur" class="full-img">
+
+            <div class="service-list">
+                <h2>Interventions Préventives</h2>
+                <div class="list-grid">
+                    <div class="list-item">
+                        <strong>Nettoyage de chéneaux</strong>
+                        <p>Curage des conduits et évacuation des débris pour éviter les débordements et infiltrations.</p>
+                    </div>
+                    <div class="list-item">
+                        <strong>Dévégétalisation</strong>
+                        <p>Enlèvement des mousses et plantes parasites qui dégradent les joints et la pierre de taille.</p>
+                    </div>
+                    <div class="list-item">
+                        <strong>Nettoyage de vitrages</strong>
+                        <p>Accès aux surfaces vitrées inaccessibles pour un entretien impeccable de vos verrières.</p>
+                    </div>
+                    <div class="list-item">
+                        <strong>Remplacement de tuiles</strong>
+                        <p>Intervention ponctuelle pour remplacer des éléments de couverture déplacés ou cassés.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: #fdfdfd; padding: 50px; border: 1px solid var(--border);">
+                <h3 style="font-family: var(--font-titles); margin-bottom: 20px;">Forfait Tranquillité</h3>
+                <p style="margin-bottom: 30px;">Nous proposons des contrats d'entretien annuel pour garantir la pérennité de votre immeuble et éviter les coûts de réparation d'urgence.</p>
+                <a href="contact.html" class="btn">Demander un devis</a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function toggleMenu() {
+            if (window.innerWidth <= 1024) {
+                document.getElementById('sidebar').classList.toggle('open');
+            }
+        }
+    </script>
+</body>
+</html>
