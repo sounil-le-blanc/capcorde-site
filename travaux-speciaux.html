@@ -20,42 +20,63 @@
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
-        body { font-family: var(--font-body); background-color: var(--bg-color); color: var(--text-main); display: flex; line-height: 1.6; }
+        
+        /* On prépare la structure flex pour le menu */
+        body { 
+            font-family: var(--font-body); 
+            background-color: var(--bg-color); 
+            color: var(--text-main); 
+            display: flex; 
+            line-height: 1.6; 
+            margin: 0;
+        }
 
-        /* --- SIDEBAR --- */
+        /* STABILISATION DU MENU : On réserve l'espace AVANT le chargement du JS */
+        cap-cordes-menu {
+            display: block;
+            width: var(--sidebar-width);
+            min-width: var(--sidebar-width);
+            height: 100vh;
+        }
+
+        /* CONTENU : Il prend tout l'espace restant sans sauter */
+        main { 
+            flex-grow: 1;
+            min-width: 0;
+            display: flex; 
+            justify-content: center; 
+        }
+
+        .content-wrapper { max-width: 850px; width: 100%; padding: 100px 20px; text-align: center; }
+
+        /* ÉLÉMENTS INTERNES DU MENU (Injectés par menu.js) */
         aside { width: var(--sidebar-width); height: 100vh; position: fixed; left: 0; top: 0; border-right: 1px solid var(--border); padding: 40px 30px; display: flex; flex-direction: column; background: #fff; z-index: 500; transition: transform 0.3s ease-in-out; }
         .logo-img { max-width: 100%; height: auto; display: block; margin-bottom: 40px; }
         nav ul { list-style: none; }
         nav ul li { margin-bottom: 12px; }
         nav ul li a { font-family: var(--font-titles); text-decoration: none; color: var(--text-main); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* --- BURGER --- */
         .burger-btn { display: none; position: fixed; top: 20px; right: 20px; z-index: 1000; background: #fff; border: 1px solid var(--border); padding: 10px; cursor: pointer; border-radius: 5px; }
-        .burger-btn span { display: block; width: 25px; height: 2px; background: var(--accent); margin: 5px 0; }
+        .burger-btn span { display: block; width: 25px; height: 2px; background: var(--accent); margin: 5px 0; transition: 0.3s; }
 
-        /* --- CONTENU --- */
-        main { margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width)); display: flex; justify-content: center; }
-        .content-wrapper { max-width: 850px; width: 100%; padding: 100px 20px; text-align: center; }
-
+        /* STYLE DES PAGES */
         h1 { font-family: var(--font-titles); text-transform: uppercase; font-size: 2.2rem; margin-bottom: 20px; letter-spacing: 2px; }
         .subtitle { font-size: 1.1rem; color: var(--text-secondary); margin-bottom: 60px; text-transform: uppercase; letter-spacing: 1px; }
-
         .big-image { width: 100%; height: 500px; object-fit: cover; margin-bottom: 60px; filter: grayscale(20%); }
-
         .speciaux-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; text-align: left; }
         .speciaux-item { padding: 30px; border: 1px solid var(--border); }
         .speciaux-item h2 { font-family: var(--font-titles); font-size: 0.9rem; text-transform: uppercase; margin-bottom: 15px; color: var(--accent); }
-        
         .expert-block { margin-top: 80px; text-align: left; padding: 40px; background: #fdfdfd; border: 1px solid var(--border); }
-        .expert-block h3 { font-family: var(--font-titles); text-transform: uppercase; font-size: 1.1rem; margin-bottom: 20px; }
-
         .btn { font-family: var(--font-titles); display: inline-block; padding: 18px 40px; border: 1px solid var(--accent); text-decoration: none; color: #fff; background: var(--accent); font-size: 0.75rem; text-transform: uppercase; border-radius: 50px; transition: 0.3s; margin-top: 40px; }
 
+        /* RESPONSIVE */
         @media (max-width: 1024px) {
+            cap-cordes-menu { width: 0; min-width: 0; }
             .burger-btn { display: block; }
             aside { transform: translateX(-100%); width: 280px; }
             aside.open { transform: translateX(0); }
-            main { margin-left: 0; width: 100%; }
+            main { width: 100%; }
+            .content-wrapper { padding: 80px 20px; }
             .speciaux-grid { grid-template-columns: 1fr; }
             .big-image { height: 300px; }
         }

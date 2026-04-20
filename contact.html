@@ -20,71 +20,29 @@
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
-        
+
+        /* Structure stabilisée pour bloquer l'espace du menu dès le départ */
         body {
             font-family: var(--font-body);
             background-color: var(--bg-color);
             color: var(--text-main);
             display: flex;
             line-height: 1.6;
+            margin: 0;
         }
 
-        /* --- MENU BURGER (MOBILE) --- */
-        .burger-btn {
-            display: none;
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-            background: #fff;
-            border: 1px solid var(--border);
-            padding: 10px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        .burger-btn span {
+        /* RÉSERVATION DE L'ESPACE MENU (Anti-saut) */
+        cap-cordes-menu {
             display: block;
-            width: 25px;
-            height: 2px;
-            background: var(--accent);
-            margin: 5px 0;
-            transition: 0.3s;
-        }
-
-        /* --- SIDEBAR --- */
-        aside {
             width: var(--sidebar-width);
+            min-width: var(--sidebar-width);
             height: 100vh;
-            position: fixed;
-            left: 0; top: 0;
-            border-right: 1px solid var(--border);
-            padding: 40px 30px;
-            display: flex;
-            flex-direction: column;
-            background: #fff;
-            z-index: 500;
-            transition: transform 0.3s ease-in-out;
         }
 
-        .logo-container { margin-bottom: 40px; }
-        .logo-img { max-width: 100%; height: auto; display: block; }
-
-        nav ul { list-style: none; }
-        nav ul li { margin-bottom: 12px; }
-        nav ul li a {
-            font-family: var(--font-titles);
-            text-decoration: none;
-            color: var(--text-main);
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        nav ul li a:hover { color: #888; }
-
-        /* --- CONTENU --- */
+        /* CONTENU PRINCIPAL */
         main {
-            margin-left: var(--sidebar-width);
-            width: calc(100% - var(--sidebar-width));
+            flex-grow: 1;
+            min-width: 0;
             display: flex;
             justify-content: center;
         }
@@ -96,46 +54,34 @@
             text-align: center;
         }
 
+        /* ÉLÉMENTS INTERNES (Styles pour menu.js) */
+        aside { width: var(--sidebar-width); height: 100vh; position: fixed; left: 0; top: 0; border-right: 1px solid var(--border); padding: 40px 30px; display: flex; flex-direction: column; background: #fff; z-index: 500; transition: transform 0.3s ease-in-out; }
+        .logo-img { max-width: 100%; height: auto; display: block; margin-bottom: 40px; }
+        nav ul { list-style: none; }
+        nav ul li { margin-bottom: 12px; }
+        nav ul li a { font-family: var(--font-titles); text-decoration: none; color: var(--text-main); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        .burger-btn { display: none; position: fixed; top: 20px; right: 20px; z-index: 1000; background: #fff; border: 1px solid var(--border); padding: 10px; cursor: pointer; border-radius: 5px; }
+        .burger-btn span { display: block; width: 25px; height: 2px; background: var(--accent); margin: 5px 0; transition: 0.3s; }
+
+        /* SPÉCIFIQUE CONTACT */
         h1 { font-family: var(--font-titles); text-transform: uppercase; font-size: 2.5rem; margin-bottom: 60px; letter-spacing: 2px; }
-        
         .contact-card { margin-bottom: 40px; }
         .label { font-family: var(--font-titles); font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 10px; }
         .info-value { font-size: 1.4rem; font-weight: bold; text-decoration: none; color: var(--text-main); }
         .address { font-size: 1.1rem; color: var(--text-main); }
-
-        .btn {
-            font-family: var(--font-titles);
-            display: inline-block;
-            padding: 18px 40px;
-            border: 1px solid var(--accent);
-            text-decoration: none;
-            color: #fff;
-            background: var(--accent);
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            border-radius: 50px;
-            margin-top: 30px;
-            transition: 0.3s;
-        }
+        .btn { font-family: var(--font-titles); display: inline-block; padding: 18px 40px; border: 1px solid var(--accent); text-decoration: none; color: #fff; background: var(--accent); font-size: 0.75rem; text-transform: uppercase; border-radius: 50px; margin-top: 30px; transition: 0.3s; }
         .btn:hover { opacity: 0.8; }
 
-        /* --- RESPONSIVE --- */
+        /* RESPONSIVE */
         @media (max-width: 1024px) {
+            cap-cordes-menu { width: 0; min-width: 0; }
             .burger-btn { display: block; }
-            aside { 
-                transform: translateX(-100%); 
-                width: 280px;
-            }
-            aside.open { 
-                transform: translateX(0); 
-            }
-            main { 
-                margin-left: 0; 
-                width: 100%; 
-            }
+            aside { transform: translateX(-100%); width: 280px; }
+            aside.open { transform: translateX(0); }
+            main { width: 100%; }
             .content-wrapper { padding: 80px 20px; }
             h1 { font-size: 2rem; margin-bottom: 40px; }
-            .info-value { font-size: 1.2rem; }
         }
     </style>
     <script src="menu.js" defer></script>
