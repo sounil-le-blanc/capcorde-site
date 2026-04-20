@@ -1,5 +1,7 @@
 class CapCordesMenu extends HTMLElement {
-    connectedCallback() {
+    constructor() {
+        super();
+        // On pré-construit le HTML dès l'instanciation
         this.innerHTML = `
             <div class="burger-btn" id="burgerBtn">
                 <span></span><span></span><span></span>
@@ -28,24 +30,32 @@ class CapCordesMenu extends HTMLElement {
                 </nav>
             </aside>
         `;
+    }
 
+    connectedCallback() {
         const burger = this.querySelector('#burgerBtn');
         const sidebar = this.querySelector('#sidebar');
         
-        burger.addEventListener('click', () => {
-            if (window.innerWidth <= 1024) {
-                sidebar.classList.toggle('open');
-            }
-        });
+        // Gestion du menu burger
+        if (burger && sidebar) {
+            burger.onclick = () => {
+                if (window.innerWidth <= 1024) {
+                    sidebar.classList.toggle('open');
+                }
+            };
+        }
 
+        // Fermeture automatique sur mobile
         const links = this.querySelectorAll('nav a');
         links.forEach(link => {
-            link.addEventListener('click', () => {
+            link.onclick = () => {
                 if (window.innerWidth <= 1024) {
                     sidebar.classList.remove('open');
                 }
-            });
+            };
         });
     }
 }
+
+// On définit l'élément le plus tôt possible
 customElements.define('cap-cordes-menu', CapCordesMenu);
