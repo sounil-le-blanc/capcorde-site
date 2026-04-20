@@ -61,28 +61,11 @@
             .stats-row { flex-direction: column; gap: 30px; }
         }
     </style>
+    <script src="menu.js" defer></script>
 </head>
 <body>
 
-    <div class="burger-btn" onclick="toggleMenu()">
-        <span></span><span></span><span></span>
-    </div>
-
-    <aside id="sidebar">
-        <img src="logo.png" alt="Cap Cordes" class="logo-img">
-        <nav>
-            <ul>
-                <li><a href="index.html">Forfait inspection toiture</a></li>
-                <li><a href="restauration.html">Restauration de pierre</a></li>
-                <li><a href="infiltration.html">Recherche d'infiltration</a></li>
-                <li><a href="entretien.html">Entretien</a></li>
-                <li><a href="courettes.html">Rénovation de courettes</a></li>
-                <li><a href="travaux-speciaux.html">Travaux spéciaux</a></li>
-                <li><a href="equipe.html">Qui sommes nous ?</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </aside>
+    <cap-cordes-menu></cap-cordes-menu>
 
     <main>
         <div class="content-wrapper">
@@ -135,13 +118,5 @@
             </div>
         </div>
     </main>
-
-    <script>
-        function toggleMenu() {
-            if (window.innerWidth <= 1024) {
-                document.getElementById('sidebar').classList.toggle('open');
-            }
-        }
-    </script>
 </body>
 </html>
