@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restauration de Pierre | Cap Cordes</title>
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -19,41 +19,118 @@
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: var(--font-body); display: flex; color: var(--text-main); line-height: 1.6; }
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            line-height: 1.6;
+        }
+
+        /* --- MENU BURGER (MOBILE) --- */
+        .burger-btn {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: #fff;
+            border: 1px solid var(--border);
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .burger-btn span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: var(--accent);
+            margin: 5px 0;
+            transition: 0.3s;
+        }
 
         /* --- SIDEBAR --- */
-        aside { width: var(--sidebar-width); height: 100vh; position: fixed; left: 0; top: 0; border-right: 1px solid var(--border); padding: 40px 30px; background: #fff; z-index: 500; transition: 0.3s; }
-        .logo-img { max-width: 100%; height: auto; margin-bottom: 40px; }
+        aside {
+            width: var(--sidebar-width);
+            height: 100vh;
+            position: fixed;
+            left: 0; top: 0;
+            border-right: 1px solid var(--border);
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            z-index: 500;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .logo-container { margin-bottom: 40px; }
+        .logo-img { max-width: 100%; height: auto; display: block; }
+
         nav ul { list-style: none; }
         nav ul li { margin-bottom: 12px; }
-        nav ul li a { font-family: var(--font-titles); text-decoration: none; color: var(--text-main); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; }
-
-        /* --- BURGER MOBILE --- */
-        .burger-btn { display: none; position: fixed; top: 20px; right: 20px; z-index: 1000; background: #fff; border: 1px solid var(--border); padding: 10px; cursor: pointer; border-radius: 5px; }
-        .burger-btn span { display: block; width: 25px; height: 2px; background: var(--accent); margin: 5px 0; }
+        nav ul li a {
+            font-family: var(--font-titles);
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        nav ul li a:hover { color: #888; }
 
         /* --- CONTENU --- */
-        main { margin-left: var(--sidebar-width); width: calc(100% - var(--sidebar-width)); display: flex; justify-content: center; }
-        .content-wrapper { max-width: 850px; width: 100%; padding: 80px 40px; }
-        
-        h1 { font-family: var(--font-titles); text-transform: uppercase; font-size: 2rem; margin-bottom: 20px; letter-spacing: 2px; text-align: center; }
-        .intro { font-size: 1.2rem; text-align: center; color: var(--text-secondary); margin-bottom: 60px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        main {
+            margin-left: var(--sidebar-width);
+            width: calc(100% - var(--sidebar-width));
+            display: flex;
+            justify-content: center;
+        }
 
-        .service-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 60px; }
+        .content-wrapper {
+            max-width: 850px;
+            width: 100%;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        h1 { font-family: var(--font-titles); text-transform: uppercase; font-size: 2.5rem; margin-bottom: 20px; letter-spacing: 2px; }
+        .intro { font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 60px; max-width: 700px; margin-left: auto; margin-right: auto; }
+
+        .full-img { width: 100%; height: 500px; object-fit: cover; margin-bottom: 60px; background: #f9f9f9; }
+
+        .service-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; text-align: left; margin-bottom: 80px; }
         .service-item h2 { font-family: var(--font-titles); font-size: 1rem; text-transform: uppercase; margin-bottom: 15px; border-bottom: 1px solid var(--accent); display: inline-block; }
         .service-item p { color: var(--text-secondary); font-size: 0.95rem; }
 
-        .full-img { width: 100%; height: 500px; object-fit: cover; margin: 60px 0; background: #f5f5f5; }
-        
-        .cta-section { text-align: center; margin-top: 80px; padding: 60px; border: 1px solid var(--border); }
-        .btn { font-family: var(--font-titles); display: inline-block; padding: 18px 40px; border: 1px solid var(--accent); text-decoration: none; color: #fff; background: var(--accent); font-size: 0.75rem; text-transform: uppercase; border-radius: 50px; transition: 0.3s; }
+        .cta-section { margin-top: 80px; padding: 60px 20px; border: 1px solid var(--border); border-radius: 4px; }
 
+        .btn {
+            font-family: var(--font-titles);
+            display: inline-block;
+            padding: 18px 40px;
+            border: 1px solid var(--accent);
+            text-decoration: none;
+            color: #fff;
+            background: var(--accent);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            border-radius: 50px;
+            margin-top: 30px;
+            transition: 0.3s;
+        }
+        .btn:hover { opacity: 0.8; }
+
+        /* --- RESPONSIVE --- */
         @media (max-width: 1024px) {
             .burger-btn { display: block; }
-            aside { transform: translateX(-100%); }
+            aside { transform: translateX(-100%); width: 280px; }
             aside.open { transform: translateX(0); }
             main { margin-left: 0; width: 100%; }
-            .content-wrapper { padding: 60px 20px; }
+            .content-wrapper { padding: 80px 20px; }
+            h1 { font-size: 1.8rem; margin-bottom: 30px; }
             .service-grid { grid-template-columns: 1fr; }
             .full-img { height: 300px; }
         }
@@ -74,6 +151,10 @@
                 <li><a href="index.html">Forfait inspection toiture</a></li>
                 <li><a href="restauration.html">Restauration de pierre</a></li>
                 <li><a href="index.html#intervention">Recherche d'infiltration</a></li>
+                <li><a href="index.html#accueil">Entretien</a></li>
+                <li><a href="index.html#accueil">Rénovation de courettes</a></li>
+                <li><a href="index.html#accueil">Travaux spéciaux</a></li>
+                <li><a href="index.html#expertise">Qui sommes nous ?</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
@@ -82,32 +163,32 @@
     <main>
         <div class="content-wrapper">
             <h1>Restauration de Pierre</h1>
-            <p class="intro">Préservation et mise en valeur du patrimoine parisien en accès difficile.</p>
+            <p class="intro">Conservation et restauration du patrimoine sculpté et des façades en pierre de taille.</p>
 
-            <img src="pierre-restauration.jpg" alt="Restauration de pierre" class="full-img">
+            <img src="pierre-restauration.jpg" alt="Restauration ornementale" class="full-img">
 
             <div class="service-grid">
                 <div class="service-item">
+                    <h2>Ornementation & Moulures</h2>
+                    <p>Restauration et reconstitution fidèle de corniches, bandeaux et moulures d'époque. Nous redonnons vie aux reliefs architecturaux dégradés.</p>
+                </div>
+                <div class="service-item">
+                    <h2>Sculpture & Bas-Reliefs</h2>
+                    <p>Intervention spécialisée sur les éléments sculptés, statues et blasons en façade. Taille de pierre de précision en accès difficile.</p>
+                </div>
+                <div class="service-item">
                     <h2>Nettoyage & Gommage</h2>
-                    <p>Élimination des salissures atmosphériques et de la pollution sans altérer le calcin de la pierre.</p>
+                    <p>Élimination des croûtes noires et de la pollution par micro-sablage ou nébulisation, dans le respect total du calcin de la pierre.</p>
                 </div>
                 <div class="service-item">
-                    <h2>Remaillage</h2>
-                    <p>Remplacement ou réparation des blocs de pierre de taille dégradés par le temps ou les infiltrations.</p>
-                </div>
-                <div class="service-item">
-                    <h2>Rejointoiement</h2>
-                    <p>Reprise des joints au mortier de chaux traditionnel pour assurer l'étanchéité et l'esthétique des façades.</p>
-                </div>
-                <div class="service-item">
-                    <h2>Traitement Curatif</h2>
-                    <p>Application de minéralisants ou de traitements hydrofuges pour stopper l'érosion de la pierre.</p>
+                    <h2>Reprise structurelle</h2>
+                    <p>Remaillage de pierre, injection de coulis de chaux et pose d'agrafes inox pour stabiliser les éléments de façade instables.</p>
                 </div>
             </div>
 
             <div class="cta-section">
-                <h2 style="margin-bottom: 20px;">Besoin d'une expertise ?</h2>
-                <p style="margin-bottom: 30px;">Nos techniciens cordistes évaluent l'état de vos façades et corniches.</p>
+                <h2 style="font-family: var(--font-titles); text-transform: uppercase;">Votre façade est votre patrimoine</h2>
+                <p style="margin-top: 15px; color: var(--text-secondary);">Nos techniciens sont formés aux techniques de restauration traditionnelle pour le bâti ancien.</p>
                 <a href="contact.html" class="btn">Demander un devis</a>
             </div>
         </div>
