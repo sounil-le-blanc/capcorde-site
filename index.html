@@ -35,17 +35,17 @@
             margin: 0;
         }
 
-        /* 2. RÉSERVATION STRICTE DE L'ESPACE MENU */
+        /* RÉSERVATION DE L'ESPACE MENU */
         cap-cordes-menu {
             display: block;
             width: var(--sidebar-width);
             min-width: var(--sidebar-width);
             height: 100vh;
             flex-shrink: 0;
-            background-color: #fff; /* Évite un flash transparent */
+            background-color: #fff;
         }
 
-        /* 3. STABILISATION DU LOGO (Dimensions fixes) */
+        /* STABILISATION DU LOGO */
         .logo-img { 
             width: 220px !important;
             height: 80px !important;
@@ -54,11 +54,11 @@
             object-fit: contain;
         }
 
-        /* 4. STABILISATION DES ONGLETS (Verrouille la hauteur pour Orbitron) */
+        /* STABILISATION DES ONGLETS MENU */
         nav ul { list-style: none; }
         nav ul li { 
             margin-bottom: 12px; 
-            height: 24px; /* Fixe la hauteur pour éviter le saut au chargement de la police */
+            height: 24px; 
             display: flex;
             align-items: center;
         }
@@ -73,7 +73,7 @@
             line-height: 1;
         }
 
-        /* 5. STRUCTURE ASIDE (Injectée) */
+        /* STRUCTURE ASIDE (Injectée) */
         aside { 
             width: var(--sidebar-width); 
             height: 100vh; 
@@ -87,7 +87,7 @@
             z-index: 500; 
         }
 
-        /* --- CONTENU PRINCIPAL --- */
+        /* CONTENU PRINCIPAL ET STABILISATION PHOTOS */
         main {
             flex-grow: 1;
             min-width: 0;
@@ -100,16 +100,55 @@
             width: 100%;
             padding: 60px 20px;
             text-align: center;
+            margin: 0 auto;
         }
 
-        /* --- STYLES DES SECTIONS --- */
         section { margin-bottom: 120px; padding-top: 40px; display: flex; flex-direction: column; }
+        
         h1 { font-family: var(--font-titles); text-transform: uppercase; font-size: 2rem; margin-bottom: 15px; letter-spacing: 2px; order: 1; }
         .subtitle { font-family: var(--font-titles); text-transform: uppercase; font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 40px; order: 2; }
         h2 { font-family: var(--font-titles); text-transform: uppercase; font-size: 1.5rem; margin-bottom: 30px; }
-        .hero-img { width: 100%; height: 450px; object-fit: cover; margin-bottom: 40px; order: 3; }
+
+        .hero-img { 
+            width: 100%; 
+            height: 450px; 
+            object-fit: cover; 
+            margin-bottom: 40px; 
+            order: 3; 
+        }
+
+        .hero-info { order: 4; }
+        .location-tag { font-family: var(--font-titles); font-size: 0.9rem; text-transform: uppercase; margin-top: 20px; letter-spacing: 2px; }
         .price { font-family: var(--font-titles); font-size: 2.2rem; font-weight: 700; margin: 10px 0 30px 0; }
-        .btn { font-family: var(--font-titles); display: inline-block; padding: 18px 40px; border: 1px solid var(--accent); text-decoration: none; color: var(--accent); font-size: 0.75rem; text-transform: uppercase; border-radius: 50px; transition: 0.3s; }
+        
+        .photo-duo { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 25px; 
+            margin: 50px 0; 
+        }
+        .photo-duo img { 
+            width: 100%; 
+            height: 380px; 
+            object-fit: cover; 
+        }
+
+        .grid-intervention { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin: 50px 0; }
+        .card { border: 1px solid var(--border); padding: 35px; text-align: left; border-radius: 4px; }
+        .card h3 { font-family: var(--font-titles); font-size: 0.85rem; margin-bottom: 15px; text-transform: uppercase; }
+
+        .btn { 
+            font-family: var(--font-titles); 
+            display: inline-block; 
+            padding: 18px 40px; 
+            border: 1px solid var(--accent); 
+            text-decoration: none; 
+            color: var(--accent); 
+            font-size: 0.75rem; 
+            text-transform: uppercase; 
+            border-radius: 50px; 
+            transition: 0.3s; 
+        }
         .btn:hover { background: var(--accent); color: #fff; }
 
         .burger-btn { 
@@ -126,15 +165,18 @@
         }
         .burger-btn span { display: block; width: 25px; height: 2px; background: var(--accent); margin: 5px 0; transition: 0.3s; }
 
-        /* --- RESPONSIVE --- */
+        /* RESPONSIVE */
         @media (max-width: 1024px) {
             cap-cordes-menu { width: 0; min-width: 0; }
             .burger-btn { display: block; }
-            aside { transform: translateX(-100%); transition: transform 0.3s ease; }
+            aside { transform: translateX(-100%); transition: transform 0.3s ease; width: 280px; }
             aside.open { transform: translateX(0); }
             main { width: 100%; }
             .content-wrapper { padding: 40px 15px; }
             section { margin-bottom: 60px; }
+            .hero-img { height: 280px; }
+            .photo-duo img { height: 300px; }
+            .photo-duo, .grid-intervention { grid-template-columns: 1fr; gap: 15px; }
         }
     </style>
     <script src="menu.js"></script>
